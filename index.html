@@ -2,12 +2,12 @@
 <html lang="en-US">
 <head>
   <meta charset="UTF-8">
-  <title>Martyna Płomecka | Neuroscientist</title>
+  <title>Martyna Płomecka | Research Scientist</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font and Icon Libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     body, html {
@@ -18,148 +18,168 @@
       color: #333;
     }
 
-    .wrapper {
-      max-width: 800px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
+    .card {
+      max-width: 960px;
+      margin: 60px auto;
+      position: relative;
+      min-height: 420px;
+      overflow: hidden;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.1);
     }
 
-    /* Header with background image */
-    header {
-      background-image: url('/assets/me.jpg');
+    /* Photo as full background */
+    .card-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('assets/me.jpg');
       background-size: cover;
-      background-repeat: no-repeat;
       background-position: center center;
-      height: 250px;
-      position: relative;
     }
-    header::before {
+
+    /* Gradient fade: transparent on the left, white on the right */
+    .card-bg::after {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(255,253,240,0.2);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to left,
+        rgba(255,255,255,0) 0%,
+        rgba(255,255,255,0.3) 30%,
+        rgba(255,255,255,0.85) 50%,
+        rgba(255,255,255,1) 65%
+      );
     }
-    .header-content {
-      position: absolute;
-      bottom: 10px;
-      left: 20px;
+
+    /* Text panel on the right */
+    .info {
+      position: relative;
       z-index: 2;
-    }
-    header h1 {
-      margin: 0;
-      color: #fff;
-      font-weight: 300;
-      font-size: 2rem;
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-    }
-    .icons {
+      margin-left: 0;
+      margin-right: 50%;
+      padding: 60px 0 60px 48px;
       display: flex;
-      margin-top: 10px;
-    }
-    .icons a {
-      margin-right: 10px;
-      font-size: 28px;
-      color: #fff;
-    }
-    .icons a:hover {
-      color: #ddd;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 420px;
+      box-sizing: border-box;
     }
 
-    /* Main content */
-    .content {
-      flex: 1;
-      padding: 20px;
-      background-color: #fff;
+    .info h1 {
+      margin: 0 0 8px 0;
+      font-weight: 300;
+      font-size: 1.8rem;
+      color: #222;
     }
 
-    /* Update block styling */
-    .update {
-      margin-bottom: 20px;
+    .info .subtitle {
+      margin: 0 0 20px 0;
+      font-size: 1.05rem;
+      color: #555;
+      line-height: 1.6;
     }
-    .update p {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.4;
+
+    .info .scholar {
+      margin: 0 0 28px 0;
+      font-size: 1.05rem;
+      color: #555;
+      line-height: 1.6;
     }
-    .update p + p {
-      margin-top: 1em;
-    }
-    .update a {
+
+    .info .scholar a {
       color: #0073e6;
       text-decoration: none;
     }
-    .update a:hover {
+
+    .info .scholar a:hover {
       text-decoration: underline;
     }
 
-    /* About section left-aligned to match update */
-    .about {
-      text-align: left;
+    /* Icons row */
+    .icons {
+      display: flex;
+      gap: 18px;
     }
-    .about p {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.4;
+
+    .icons a {
+      font-size: 21px;
+      color: #555;
+      transition: color 0.2s;
     }
-    .about p + p {
-      margin-top: 1em;
+
+    .icons a:hover {
+      color: #0073e6;
     }
 
     /* Footer */
     footer {
-      background-color: #fff;
-      color: #777;
+      max-width: 960px;
+      margin: 0 auto;
+      color: #aaa;
       text-align: center;
-      padding: 10px;
-      border-top: 1px solid #ddd;
+      padding: 16px;
+      font-size: 0.8rem;
     }
 
-    @media (min-width: 768px) {
-      header {
+    /* Mobile: stack vertically */
+    @media (max-width: 700px) {
+      .card {
+        margin: 0;
+        box-shadow: none;
+        min-height: auto;
+      }
+
+      .card-bg {
+        position: relative;
         height: 300px;
+      }
+
+      .card-bg::after {
+        background: linear-gradient(
+          to bottom,
+          rgba(255,255,255,0) 40%,
+          rgba(255,255,255,1) 100%
+        );
+      }
+
+      .info {
+        margin-left: 0;
+        padding: 24px;
+        min-height: auto;
       }
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
 
-    <header>
-      <div class="header-content">
-        <h1>Martyna Płomecka</h1>
-        <div class="icons">
-          <a href="mailto:mbplomecka@gmail.com"><i class="fas fa-envelope"></i></a>
-          <a href="https://scholar.google.com/citations?hl=en&user=J5MIOdQAAAAJ" target="_blank"><i class="fas fa-graduation-cap"></i></a>
-          <a href="https://twitter.com/MartynaPlomecka" target="_blank"><i class="fab fa-twitter"></i></a>
-          <a href="https://github.com/MartynaPlomecka" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/martynaplomecka/" target="_blank"><i class="fab fa-linkedin"></i></a>
-        </div>
+  <div class="card">
+    <div class="card-bg"></div>
+
+    <div class="info">
+      <h1>Martyna Płomecka</h1>
+      <p class="subtitle">Research Scientist at Google DeepMind, NYC</p>
+      <p class="scholar">For up-to-date research, check my <a href="https://scholar.google.com/citations?hl=en&user=J5MIOdQAAAAJ" target="_blank">Google Scholar</a>.</p>
+
+      <div class="icons">
+        <a href="mailto:mbplomecka@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://scholar.google.com/citations?hl=en&user=J5MIOdQAAAAJ" target="_blank" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+        <a href="https://twitter.com/MartynaPlomecka" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://github.com/MartynaPlomecka" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/martynaplomecka/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.kaggle.com/martynaplomecka" target="_blank" title="Kaggle"><i class="fab fa-kaggle"></i></a>
+        <a href="https://research.google/people/martynaplomecka/?&type=google" target="_blank" title="Google Research"><i class="fab fa-google"></i></a>
       </div>
-    </header>
-
-    <div class="content">
-      <!-- NEW UPDATE INSERTED HERE -->
-      <div class="update">
-        <p><strong>March 2025:</strong> As of now, I’m a Research Scientist at Google, based in NYC.</p>
-        <p>See <a href="https://scholar.google.com/citations?hl=en&user=J5MIOdQAAAAJ" target="_blank">Google Scholar</a> for an up-to-date publications list.</p>
-        <p>Contact: martynka [at] google.com</p>
-      </div>
-
-      <section class="about">
-        <p>I am an applied mathematician turned computational neuroscientist, specializing in computational cognitive neuroscience with a focus on machine learning applications in neurophysiological and behavioral data analysis.</p>
-        <p>A significant portion of my research has centered around eye-tracking technologies, which have been integral to understanding cognitive functions and neural mechanisms.</p>
-        <p>Recently, I have pivoted towards Large Language Models (LLMs) for automated scientific discovery, particularly in the realms of data science and code generation.</p>
-        <p>I am currently based in Zurich, working at Google Research, where I am exploring the interface between machine learning and scientific research.</p>
-      </section>
     </div>
-
-    <footer>
-      <p>© 2024 Martyna Płomecka | Hosted on GitHub Pages</p>
-    </footer>
-
   </div>
+
+  <footer>
+    <p>&copy; 2026 Martyna Płomecka</p>
+  </footer>
+
 </body>
 </html>
